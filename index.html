@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best phone number slider</title>
+    <style>
+        .box {
+            width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .number-element {
+            display: flex;
+            flex: 1;
+            gap: 2rem;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 25px;
+            background: lightgray;
+            border-radius: 12.5px;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: orange;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: orange;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .phone-part {
+            width: 160px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+    <div class="number-element">
+        <div class="slidecontainer">
+            <input type="range" min="000" max="999" value="500" class="slider">
+        </div>
+        <div style="text-align: center;">
+            <input class="phone-part" type="text" value="500"/>
+        </div>
+    </div>
+
+    <div class="number-element">
+        <div class="slidecontainer">
+            <input type="range" min="000" max="999" value="500" class="slider">
+        </div>
+        <div style="text-align: center;">
+            <input class="phone-part" type="text" value="500"/>
+        </div>
+    </div>
+
+    <div class="number-element">
+        <div class="slidecontainer">
+            <input type="range" min="000" max="999" value="500" class="slider">
+        </div>
+        <div style="text-align: center;">
+            <input class="phone-part" type="text" value="500"/>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const numberElements = document.querySelectorAll('.number-element');
+
+        function padToThreeDigits(value) {
+            return value.toString().padStart(3, '0');
+        }
+
+        numberElements.forEach(function (element) {
+            const slider = element.querySelector('.slider');
+            const input = element.querySelector('.phone-part');
+
+            slider.addEventListener('input', function () {
+                input.value = padToThreeDigits(slider.value);
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>
